@@ -1,2 +1,2 @@
-# SAFOG
-Sweet And Full Of Grace
+# Oevyli Lang
+High performance programming language.
