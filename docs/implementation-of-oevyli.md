@@ -1,38 +1,16 @@
-# The Project
+# The Adventure to Oevyli
+We start our journey with a reason. Getting to know our tools. As Hoare once said
+"In all spheres of human intellectual and practical activity, from carpentry to golf,
+from sculpture to space travel, the true craftsman is the one who thoroughly understands
+his tools" [1].
 
-## Add followings
-* Basic data types
-  - int
-  - float (f32)
-  - double (f64)
-  - string
-* Tiles (Tensors)
-  - standard data types is f16
-  - vector
-  - matrix
-  - for higher dimensions
-* Operator fusion
-* A way to measure time spent on your GPU computing FLOPS, time spent transferring
-tensors within a GPU.
+The projects aim is to compile AI program into efficient CPU/GPU code. It contains a
+frontend which can generate both `Oevyli-IR` and `LLVM-IR`. The backend generate machine
+code and optimize for fast operations. Will see how we do it.
 
-## An Example Code
-```python
-# dot_product.ovli
+# Implementation of the Frontend
+## Lexical Scanner
 
-# Perform C = A * B.T
-A = uniform((1024, 1024))
-B = uniform((1024, 1024))
-T = uniform((1024, 1))
-
-C = A * dot(B, T)
-print C
-```
-
-# The Implementation
-The projects aim is to compile AI program into efficient CPU/GPU code. On the other
-it can output LLVM-IR too (use `gen-llvm` when compiling the code).
-
-At the end you should be able to compile and run above program in matter of seconds
-```sh
-$ oevyli dot_product.ovli
-```
+# References
+1. http://web.eecs.umich.edu/~bchandra/courses/papers/Hoare_Hints.pdf
+2. https://triton-lang.org/master/index.html

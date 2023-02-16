@@ -1,0 +1,2 @@
+/home/lilanka/pro/oevyli/build/CMakeFiles/edit_cache.dir
+/home/lilanka/pro/oevyli/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,16 @@
+# Matrix addition
+
+#-
+Add two matrices.
+-#
+fn add_two_matrices(a, b):
+  return a + b
+
+fn main():
+  # Define two matrices in the shape of 1024x1024
+  a = randn((1024, 1024))
+  b = randn((1024, 1024))
+  c = add_two_matrices(a, b)
+
+  # Print the value
+  print c
