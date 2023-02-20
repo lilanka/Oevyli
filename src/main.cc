@@ -5,6 +5,10 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#include "compile.h"
+
+using namespace oevyli;
+
 static const char* read_file(const char* fname) {
   auto fd = open(fname, O_RDONLY);
   if (fd < 0) perror("mmap() open error");
@@ -21,7 +25,7 @@ static const char* read_file(const char* fname) {
 static void compile(const char* source_path) {
   const char* source_code = read_file(source_path);
 
-  std::cout << source_code << std::endl;
+  Compile compile(source_code);
 }
 
 int main(int argc, const char* argv[]) {

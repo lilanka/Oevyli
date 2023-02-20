@@ -4,9 +4,11 @@ project(Oevyli)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(oevyli
-  oevyli/main.cc
+  src/main.cc
+  src/scanner.cc
+  src/compile.cc
 )
 
 include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/oevyli/
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/
 )
