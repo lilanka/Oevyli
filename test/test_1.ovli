@@ -1,8 +1,5 @@
 # Matrix addition
 
-#-
-Add two matrices.
--#
 fn add_two_matrices(a, b):
   return a + b
 

@@ -24,7 +24,6 @@ static const char* read_file(const char* fname) {
 
 static void compile(const char* source_path) {
   const char* source_code = read_file(source_path);
-
   Compile compile(source_code);
 }
 

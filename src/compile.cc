@@ -1,6 +1,8 @@
 #include "compile.h"
 #include "scanner.h"
 
+#include "debug.h"
+
 namespace oevyli {
 
 Compile::Compile(const char* source) {
