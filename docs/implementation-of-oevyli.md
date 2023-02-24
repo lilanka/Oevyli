@@ -15,6 +15,11 @@ Scanner converts the input, a stream of characters to stream of workds, in the f
 `(p, s)`. String with actual spelling of the word stored in a hash table. We uses a hand
 coded scanner for our compiler. Why? because it's fun to write.
 
+In our scanner we use double buffer technique for scanning. It generates the tokens and
+other information about the token (i.e line number).
+
+## Parser
+
 # References
 1. http://web.eecs.umich.edu/~bchandra/courses/papers/Hoare_Hints.pdf
 2. https://triton-lang.org/master/index.html

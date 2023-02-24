@@ -1,11 +1,11 @@
-#include "compile.h"
+#include "compiler.h"
 #include "scanner.h"
 
 #include "debug.h"
 
 namespace oevyli {
 
-Compile::Compile(const char* source) {
+Compiler::Compiler(const char* source) {
   Scanner scanner{source};
 
   // Generate tokens
