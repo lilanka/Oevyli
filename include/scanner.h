@@ -14,7 +14,7 @@ enum class TokenType {
   // keywords
   TSTRING, TI8, TI16, TI32, TI64, TF32, TF64, TTENSOR,
   TWHILE, TFOR, TIF, TELSE, TFN, TIS, TNOT, TPRINT,
-  TMAIN,
+  TMAIN, TRETURN,
 
   // single character
   TLPAREN, TRPAREN, TCOMMA, TPLUS,
@@ -27,9 +27,10 @@ enum class TokenType {
 };
 
 struct Token {
-  TokenType type;    // type of the token
-  const char* start;
-  std::size_t line;  // line number the token is in
+  TokenType type;       // type of the token
+  const char* start;    // begining of the token
+  std::size_t length;   // length of the token string
+  std::size_t line;     // line number the token is in
 };
 
 class Scanner {

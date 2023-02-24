@@ -43,15 +43,16 @@ bool Scanner::is_character(const char c) const {
 }
 
 Token Scanner::identifier_or_keyword() {
-  while (in_range(next_character(), 'a', 'z') || \
+  while (in_range(next_character(), 'a', 'z') ||  \
           in_range(next_character(), 'A', 'Z') || \
-          in_range(next_character(), '1', '9'))
+          in_range(next_character(), '1', '9') || \
+          next_character() == '_')
     advance();
 
-    const auto token_length = current - start;
-    if (token_length < oevyli_constants::keyword_min_length || \
-        token_length > oevyli_constants::keyword_max_length)
-      return create_token(TokenType::TIDENTIFIER);
+  const auto token_length = current - start;
+  if (token_length < oevyli_constants::keyword_min_length || \
+      token_length > oevyli_constants::keyword_max_length)
+    return create_token(TokenType::TIDENTIFIER);
 
 // todo: add other keywords
 #define KEYWORDS(KEYWORD_GROUP, KEYWORD)  \
@@ -61,8 +62,11 @@ Token Scanner::identifier_or_keyword() {
   KEYWORD("print", TokenType::TPRINT)     \
   KEYWORD_GROUP('f')                      \
   KEYWORD("f32", TokenType::TF32)         \
+  KEYWORD("fn", TokenType::TFN)           \
   KEYWORD_GROUP('m')                      \
-  KEYWORD("main", TokenType::TMAIN)
+  KEYWORD("main", TokenType::TMAIN)       \
+  KEYWORD_GROUP('r')                      \
+  KEYWORD("return", TokenType::TRETURN)
 
   switch (start[0]) {
     default:
@@ -92,6 +96,7 @@ Token Scanner::create_token(const TokenType type) const {
   token.type = type;
   token.line = line;
   token.start = start;
+  token.length = current - start;
   return token;
 }
 

@@ -12,6 +12,8 @@ Compile::Compile(const char* source) {
   while (true) {
     Token token = scanner.tokenize();
 
+    debug_token(token);
+
     if (token.type == TokenType::TEOF)
       break;
   }
