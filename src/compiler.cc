@@ -1,6 +1,7 @@
 #include "compiler.h"
 #include "scanner.h"
 
+#include "common.h"
 #include "debug.h"
 
 namespace oevyli {
@@ -17,6 +18,8 @@ Compiler::Compiler(const char* source) {
     if (token.type == TokenType::TEOF)
       break;
   }
+
+  OEVYLI_MESSAGE("Compilation success.");
 }
 
 } // namespace oevyli

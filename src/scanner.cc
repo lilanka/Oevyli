@@ -5,6 +5,8 @@
 
 namespace oevyli {
 
+Scanner::~Scanner() {}
+
 char Scanner::current_character() const {
   return *current;
 }
@@ -42,6 +44,7 @@ bool Scanner::is_character(const char c) const {
   return *(current + 1) == c;
 }
 
+// followed a cool method to identify keyword by V8 JS Engine
 Token Scanner::identifier_or_keyword() {
   while (in_range(next_character(), 'a', 'z') ||  \
           in_range(next_character(), 'A', 'Z') || \
@@ -133,7 +136,9 @@ Token Scanner::tokenize() {
     case '-': return create_token(TokenType::TMINUS);
     case '*': return create_token(TokenType::TSTAR);
     case '/': return create_token(TokenType::TSLASH);
-    case '#': return comment();                         // todo: add multi line comments
+
+    // todo: add multiline commenting feature
+    case '#': return comment();
     case '!': return create_token(is_character('=') ? TokenType::TBANG_EQ : TokenType::TBANG);
     case '=': return create_token(is_character('=') ? TokenType::TEQ_EQ : TokenType::TEQ);
     case '<': return create_token(is_character('=') ? TokenType::TLESS_EQ : TokenType::TLESS);

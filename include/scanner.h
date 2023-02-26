@@ -33,30 +33,53 @@ struct Token {
   std::size_t line;     // line number the token is in
 };
 
+// a list of tokens that output by the scanner
+struct TokenList {
+  Token* token;
+  TokenList* next;
+};
+
 class Scanner {
 public:
   Scanner(const char* source): start{source}, current{source}, line{0} {}
+  ~Scanner();
+
+  // to generate token list for parser
+  // this is the output from the scanner
+  TokenList generate_token_list();
+
+  // main loop that generate one token at a time
   Token tokenize();
 
 private:
   Token create_token(const TokenType type) const;
+
+  // outputs if the token is identifier or a keyword
   Token identifier_or_keyword();
   Token comment();
   Token invalid_token() const;
   char current_character() const;
   char next_character() const;
+
+  // get current character and
   // advance current pointer by one
   char advance();
   void skip_whitespaces();
+
+  // check wether the current pointer is at the end of the buffer
   bool is_at_end() const;
+
+  // given c, check if c in between lower and upper bounds
   bool in_range(const char c, const char lower, const char upper) const;
+
   // check if whether next character is 'c'
   bool is_character(const char c) const;
 
+
 private:
-  const char* start;
-  const char* current;
-  std::size_t line;
+  const char* start;    // point to the start of the buffer
+  const char* current;  // points to the current character processed in the buffer
+  std::size_t line;     // line number of the token
 };
 
 } // namespace oevyli

@@ -7,6 +7,7 @@ add_executable(oevyli
   src/main.cc
   src/scanner.cc
   src/compiler.cc
+  src/parser.cc
 )
 
 include_directories(
