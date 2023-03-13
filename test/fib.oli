@@ -1,0 +1,11 @@
+# Calculate fibonacci numbers
+fn fib(n) {
+  if (n < 2) return n;
+  return fib(n - 1) + fib(n - 2);
+}
+
+// Get the current time
+start_time = time();
+print("fibonacci value: ", fib(40))
+end_time = time();
+print(end_time - start_time);
