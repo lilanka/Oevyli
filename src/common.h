@@ -2,9 +2,9 @@
 // Copyright (C) 2023 Lilanka Pathirage
 // ------------------------------------
 
-#include "oevyli.cc"
+#ifndef COMMON_H
+#define COMMON_H
 
-int main() {
-  oevyli();
-  return 0;  
-}
+#include <stddef.h>
+
+#endif
