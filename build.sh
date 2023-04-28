@@ -1,7 +1,3 @@
-# ------------------------------------
-# Copyright (C) 2023 Lilanka Pathirage 
-# ------------------------------------
-
 # Instead of creating complicated build system, 
 # just use simple build script to build the language 
 

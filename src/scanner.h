@@ -1,7 +1,3 @@
-// ------------------------------------
-// Copyright (C) 2023 Lilanka Pathirage
-// ------------------------------------
-
 #ifndef SCANNER_H
 #define SCANNER_H
 
@@ -37,7 +33,7 @@ private:
 private:
   const char* start;      // Start of the current token being scanned
   const char* current;    // Current character being scanned 
-  size_t line = 1;   // Same as line in token, but use as current line being scanned
+  size_t line = 1;        // Same as line in token, but use as current line being scanned
 };
 
 } // namespace Oevyli

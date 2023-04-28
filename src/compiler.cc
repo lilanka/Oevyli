@@ -1,7 +1,3 @@
-// ------------------------------------
-// Copyright (C) 2023 Lilanka Pathirage
-// ------------------------------------
-
 #include <iostream>
 
 #include "compiler.h"

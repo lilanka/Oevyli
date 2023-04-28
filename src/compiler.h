@@ -1,7 +1,3 @@
-// ------------------------------------
-// Copyright (C) 2023 Lilanka Pathirage
-// ------------------------------------
-
 #ifndef COMPILER_H
 #define COMPILER_H
 
