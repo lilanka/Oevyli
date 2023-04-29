@@ -7,7 +7,7 @@ Token Scanner::create_token(const TokenType type) const {
   token.start = start;
   token.type = type;
   token.line = line;
-  token.length = (int)(current - start);
+  token.length = static_cast<int>(current - start);
   return token;
 }
 

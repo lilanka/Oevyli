@@ -14,16 +14,30 @@ const int keyword_max_length = 5;
 
 enum class TokenType {
   // Single character tokens
-  T_MINUS, T_PLUS, T_SLASH, T_STAR, 
+  T_MINUS = 0, 
+  T_PLUS = 1, 
+  T_SLASH = 2, 
+  T_STAR = 3, 
   // One or two character tokens
-  T_EQUAL, T_EQUAL_EQUAL, T_GREATER, T_GREATER_EQUAL,
-  T_LESS, T_LESS_EQUAL, T_BANG, T_BANG_EQUAL,
+  T_EQUAL = 4, 
+  T_EQUAL_EQUAL = 5, 
+  T_GREATER = 6, 
+  T_GREATER_EQUAL = 7,
+  T_LESS = 8, 
+  T_LESS_EQUAL = 9, 
+  T_BANG = 10, 
+  T_BANG_EQUAL = 11,
   // Literals
-  T_IDENTIFIER, T_STRING, T_NUMBER,
+  T_IDENTIFIER = 12, 
+  T_STRING = 13, 
+  T_NUMBER = 14,
   // Keywords
-  T_PRINT, T_TRUE, T_FALSE,  // We don't implement anything, untill we need it
+  T_PRINT = 15, 
+  T_TRUE = 16, 
+  T_FALSE = 17,
 
-  T_ERROR, T_EOF
+  T_ERROR = 18, 
+  T_EOF = 19
 };
 
 struct Token {
