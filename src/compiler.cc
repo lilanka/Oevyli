@@ -16,14 +16,23 @@ void Compiler::compile(const char* source) {
   bool scanning = true;
   while (scanning) {
     Token token = scanner.tokanize();
-    if (token.line != line)
+    if (token.line != line) {
       line = token.line;
-    if (token.type == TokenType::T_EOF) {
-      scanning = false;
-
-      std::cout << "passed\n";
+      std::cout << token.line << std::endl;
+    } else {
+      std::cout << "  | ";
     }
+ 
+    // We don't have this much of wrapper just yet
+    std::cout << token.length << " " << token.start;
 
+    if (token.type == TokenType::T_ERROR) {
+      //scanning = false;
+      std::cout << "Unrecorgnized token" << std::endl;
+    } else if (token.type == TokenType::T_EOF) {
+      scanning = false;
+      std::cout << "Scanning finished" << std::endl;
+    }
   }
 }
 

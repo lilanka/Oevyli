@@ -1,3 +1,44 @@
 Oevyli Language
+---------------
 
-Oevyli is a scripting language.
+Oevyli is a functional scripting language. Philosophy is to create 
+something as simple dumb as possible. It's something like Haskell.
+
+Haskell is not dumb!
+
+How to use it
+-------------
+# On linux close the repo, execute build.sh (./build.sh). Go to bin/
+directory and 
+  * For REPL:  ./oevyli
+  * To run your .oli file: ./oevyli <your .oli file>
+
+Language
+--------
+# Create a function that multiply a number by itself and print it
+
+print_simple_value.oli -------------------------------------------
+
+var x = x * x
+print var 3   ; should output 9. ';' is comments by the way.  
+------------------------------------------------------------------
+
+# Control flow
+
+whats_my_score.oli -----------------------------------------------
+; you can read this as 'what's my score Oli'
+
+my_socre x
+  | x > 75    = "A"
+  | x > 65    = "B"
+  | x > 55    = "C"
+  | x > 35    = "D"
+  | otherwise = "F"
+
+print my_score 63 ; should output C
+------------------------------------------------------------------
+
+todo
+----
+* First I need the compiler that's fast and efficient.
+* Create a debugger.
