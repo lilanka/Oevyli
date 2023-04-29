@@ -6,10 +6,10 @@ namespace Oevyli {
 
 InterpretResult VM::interpret(const char* source) {
   Instr instructions;
-  Compiler compiler(source);
+  Compiler compiler(source, instructions);
 
   // Compiler fill the instr with bytecode
-  if (!compiler.compile(instructions)) {
+  if (!compiler.compile()) {
     // deallocate instr
     return InterpretResult::INTERPRET_COMPILE_ERROR;
   }

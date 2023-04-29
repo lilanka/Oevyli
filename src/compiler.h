@@ -10,11 +10,11 @@ namespace Oevyli {
 // Parsing and Code generation happens here
 class Compiler {
 public:
-  Compiler(const char* source): scanner(source) {};
+  Compiler(const char* source, Instr& instructions): scanner(source), instructions(instructions) {};
 
   // Compilation starts here. It takes the source file as input
   // and do the compilation and running 
-  bool compile(Instr& instructions);
+  bool compile();
 
 private:
   // Advancing through tokens
@@ -26,10 +26,10 @@ private:
   void error_at_current(const char* message);
   // Tell user about error of previos token
   void error(const char* message);
-
   void error_at(Token& token, const char* message);
 
 private:
+  Instr instructions;
   Scanner scanner;
   Token previous;
   Token current;

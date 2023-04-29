@@ -56,7 +56,7 @@ void Compiler::expression() {}
 // After the tokenization part source should be freed.
 // And there is no point storing all the tokens at once. 
 // So we request a token only when scanner needs one 
-bool Compiler::compile(Instr& instructions) {
+bool Compiler::compile() {
   advance();
   expression();
   consume(TokenType::T_EOF, "Expect end of expression");
