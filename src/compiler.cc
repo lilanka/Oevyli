@@ -26,7 +26,7 @@ void Compiler::error_at(Token& token, const char* message) {
     std::cout << " at " << token.start;
   }
 
-  std::cout << message << std::endl;
+  std::cout << " " << message << std::endl;
   had_error = true;
 }
 
