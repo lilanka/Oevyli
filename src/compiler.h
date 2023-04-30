@@ -2,15 +2,16 @@
 #define COMPILER_H
 
 #include "common.h"
-#include "instr.h"
+#include "opcodes.h"
 #include "scanner.h"
+#include "memory.h"
 
 namespace Oevyli {
 
 // Parsing and Code generation happens here
 class Compiler {
 public:
-  Compiler(const char* source, Instr& instructions): scanner(source), instructions(instructions) {};
+  Compiler(const char* source, DArray<uint8_t>& instructions): scanner(source), instructions(instructions) {};
 
   // Compilation starts here. It takes the source file as input
   // and do the compilation and running 
@@ -29,7 +30,7 @@ private:
   void error_at(Token& token, const char* message);
 
 private:
-  Instr instructions;
+  DArray<uint8_t> instructions;
   Scanner scanner;
   Token previous;
   Token current;

@@ -3,8 +3,10 @@
 
 #include <cstdint>
 
-#include "instr.h"
+#include "opcodes.h"
 #include "common.h"
+#include "memory.h"
+#include "value.h"
 
 namespace Oevyli {
 
@@ -25,9 +27,13 @@ private:
   InterpretResult run();
   // Read next byte
   uint8_t read_byte();
+  Value read_constant();
 
 protected:
-  Instr instructions; // Instructions that VM executes
+  // Instruction buffer holds the instruction that VM exectues 
+  DArray<uint8_t> instructions;
+  // Constant pool buffer holds the constant related to OP_CONSTANT Opcodes 
+  DArray<Value> constant_pool;
 
 private:
   uint8_t* ip; // Keeps track of instruction about to be executed

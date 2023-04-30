@@ -62,7 +62,7 @@ bool Compiler::compile() {
   consume(TokenType::T_EOF, "Expect end of expression");
   return !had_error;
 
-  /*
+  /* for testing 
   int line = -1;
   bool scanning = true;
   while (scanning) {
