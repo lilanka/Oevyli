@@ -5,12 +5,23 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "lldb",
-      "request": "launch",
-      "name": "Debug",
+      "name": "(gdb) Attach",
+      "type": "cppdbg",
+      "request": "attach",
       "program": "${workspaceFolder}/bin/oevyli",
-      "args": [],
-      "cwd": "${workspaceFolder}/bin/"
-    }
+      "MIMode": "gdb",
+      "setupCommands": [
+          {
+              "description": "Enable pretty-printing for gdb",
+              "text": "-enable-pretty-printing",
+              "ignoreFailures": true
+          },
+          {
+              "description": "Set Disassembly Flavor to Intel",
+              "text": "-gdb-set disassembly-flavor intel",
+              "ignoreFailures": true
+          }
+      ]
+    },
   ]
 }

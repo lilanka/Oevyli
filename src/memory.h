@@ -45,7 +45,6 @@ public:
     capacity = 0;
     values = nullptr;
   }
-
 };
 
 } // namespace Oevyli

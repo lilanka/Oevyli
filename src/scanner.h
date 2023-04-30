@@ -6,10 +6,8 @@
 namespace Oevyli {
 
 namespace Constants {
-
-const int keyword_min_length = 4;
-const int keyword_max_length = 5;
-
+const unsigned int keyword_min_length = 4;
+const unsigned int keyword_max_length = 5;
 } // namespace Constants
 
 enum class TokenType {
