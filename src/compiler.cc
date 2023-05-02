@@ -5,6 +5,26 @@
 
 namespace Oevyli {
 
+void Compiler::make_constant(Value value) {}
+
+void Compiler::gen_constant(Value value) {
+  //write_byte(OP_CONSTANT, make_constant(value));
+}
+
+void Compiler::number() {
+  double value = strtod(previous.start, nullptr);
+  gen_constant(value);
+}
+
+void Compiler::write_byte(uint8_t byte) {
+  instructions.write(byte);
+}
+
+void Compiler::write_byte(uint8_t byte1, uint8_t byte2) {
+  instructions.write(byte1);
+  instructions.write(byte2);
+}
+
 void Compiler::consume(TokenType type, const char* message) {
   if (current.type == type) {
     advance();
@@ -52,14 +72,11 @@ void Compiler::advance() {
 
 void Compiler::expression() {}
 
-// TODO (Lilanka): It's allway wise to free the memory. 
-// After the tokenization part source should be freed.
-// And there is no point storing all the tokens at once. 
-// So we request a token only when scanner needs one 
 bool Compiler::compile() {
   advance();
   expression();
   consume(TokenType::T_EOF, "Expect end of expression");
+  instructions.write(OP_RETURN);
   return !had_error;
 
   /* for testing 

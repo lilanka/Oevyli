@@ -20,6 +20,9 @@ enum class InterpretResult {
   INTERPRET_RUNTIME_ERROR  
 };
 
+// TODO (Lilanka): Basically what we have is a buffer to write Opcodes, and a buffer to write 
+// constants. So when a constant occurs on the opcode buffer, we need a way to get index of 
+// corresponding constant value in constant pool.
 class VM {
 public:
   VM() {}
@@ -48,6 +51,7 @@ protected:
   Value* stack_top = stack;
 
 private:
+  // TODO (Lilanka): Make it local in run()
   uint8_t* ip; // Keeps track of instruction about to be executed
 };
 

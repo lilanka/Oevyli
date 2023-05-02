@@ -63,20 +63,19 @@ InterpretResult VM::run() {
 }
 
 InterpretResult VM::interpret(const char* source) {
+  /*
   // For testing fill instruction buffer and constant pool buffer 
   instructions.write(OP_CONSTANT);
-  constant_pool.write(23.2);
+  int constant1 = constant_pool.write_and_get_index(23.2);
   instructions.write(OP_CONSTANT);
-  constant_pool.write(2.2);
+  int constant2 = constant_pool.write_and_get_index(2.2);
   instructions.write(OP_CONSTANT);
-  constant_pool.write(200.2);
+  int constant3 = constant_pool.write_and_get_index(200.2);
   instructions.write(OP_NEGATE);
   instructions.write(OP_RETURN);
   // --------------------------------------
+  */
 
-  ip = instructions.values;
-  run();
-  /*
   Compiler compiler(source, instructions);
 
   // Compiler fill the instr with bytecode
@@ -84,8 +83,13 @@ InterpretResult VM::interpret(const char* source) {
     // deallocate instr
     return InterpretResult::INTERPRET_COMPILE_ERROR;
   }
-  */
-  return InterpretResult::INTERPRET_OK;
+  ip = instructions.values;
+  InterpretResult result = run();
+  
+  instructions.free();
+  constant_pool.free();
+
+  return result;
 }
 
 } // namespace Oevyli

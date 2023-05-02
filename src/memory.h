@@ -28,7 +28,7 @@ public:
   DArray(): count(0), capacity(0), values(nullptr) {}
   ~DArray() {}
 
-  // Wrtie on the array
+  // Wrtie on the buffer 
   void write(T value) {
     if (capacity < count + 1) {
       int old_capacity = capacity;
@@ -39,6 +39,13 @@ public:
     count++;
   }
 
+  // Write on the buffer and get the index of the buffer which the value written in
+  int write_and_get_index(T value) {
+    write(value);
+    return count - 1;
+  }
+
+  // Free the buffer. Of course we can use disructor :)
   void free() {
     FREE_ARRAY(T, values, capacity);
     count = 0;
