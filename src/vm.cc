@@ -2,6 +2,7 @@
 
 #include "vm.h"
 #include "debug.h"
+#include "compiler.h"
 
 namespace Oevyli {
 
@@ -86,8 +87,21 @@ InterpretResult VM::interpret(const char* source) {
   //debug_instructions(instructions, constant_pool, lines);
   // ------------------------------------------------
 
+  Compiler compiler(source);
+
+  if (!(compiler.compile(instructions))) {
+    instructions.free();
+    return InterpretResult::COMPILE_ERROR;
+  }
+
   ip = instructions.values;
-  return run();
+  debug_printf("%s\n", "passed");
+  InterpretResult result = run();
+
+  instructions.free();
+  lines.free();
+  constant_pool.free();
+  return result;
 }
 
 } // namespace Oevyli
