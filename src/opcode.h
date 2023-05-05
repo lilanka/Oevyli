@@ -7,6 +7,13 @@ namespace Oevyli {
 enum OpCode {
   OP_CONSTANT,      // 8-bit constant
   OP_CONSTANT_LONG, // 24-bit constant
+  OP_NEGATE,
+  // Binary ops
+  OP_ADD,
+  OP_SUBTRACT,
+  OP_MULTIPLY,
+  OP_DIVIDE,
+
   OP_RETURN,
 };
 
