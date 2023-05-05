@@ -16,6 +16,9 @@ static void compile(const char* fname) {
   const char* source = read_file(fname);
   VM vm;
   InterpretResult result = vm.interpret(source);
+
+  if (result == InterpretResult::OK)
+    std::cout << "Interpret OK\n";
 }
 
 int main(int argc, const char* argv[]) {

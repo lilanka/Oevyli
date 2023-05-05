@@ -3,6 +3,7 @@ Oevyli Language
 
 Oevyli is a functional scripting language. Philosophy is to create 
 something as simple dumb as possible. It's something like Haskell.
+By following the book Crafting Interpreters by Robert Nystrom.
 
 Haskell is not dumb!
 

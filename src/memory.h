@@ -1,9 +1,8 @@
 #ifndef MEMORY_H
 #define MEMORY_H
 
+#include <iostream>
 #include <cstdlib>
-
-#include "common.h"
 
 namespace Oevyli {
 
@@ -16,17 +15,17 @@ namespace Oevyli {
 #define FREE_ARRAY(type, pointer, old_count) \
   reallocate(pointer, sizeof(type) * (old_count), 0) 
 
+// This is where memory allocation happens
 void* reallocate(void* pointer, size_t old_size, size_t new_size);
 
-template <typename T>
-class DArray {
+template <class T>
+class DMem {
 public:
-  int count;
-  int capacity;
+  int count, capacity;
   T* values;
 
-  DArray(): count(0), capacity(0), values(nullptr) {}
-  ~DArray() {}
+  DMem(): count(0), capacity(0), values(nullptr) {}
+  ~DMem() {}
 
   // Wrtie on the buffer 
   void write(T value) {
@@ -38,12 +37,22 @@ public:
     values[count] = value;
     count++;
   }
-
+	
   // Write on the buffer and get the index of the buffer which the value written in
   int write_and_get_index(T value) {
     write(value);
     return count - 1;
   }
+
+	int size() { return count; }
+
+	T item(int i) {
+		if (i >= count) {
+			std::cout << "Index out of range\n";
+			exit(1);
+		}
+		return values[i];
+	}
 
   // Free the buffer. Of course we can use disructor :)
   void free() {
