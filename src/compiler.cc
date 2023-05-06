@@ -50,7 +50,8 @@ void Compiler::advance() {
   }
 }
 
-bool Compiler::compile(DMem<uint8_t>& instructions) {
+bool Compiler::compile(InstructionBuffer* buffer) {
+  buffer = buffer;
   advance();
   expression();
   consume(TokenType::T_EOF, "Expect end of expression");

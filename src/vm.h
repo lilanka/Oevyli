@@ -6,6 +6,7 @@
 #include "opcode.h"
 #include "memory.h"
 #include "value.h"
+#include "buffers.h"
 
 namespace Oevyli {
 
@@ -41,10 +42,10 @@ private:
   void push(Value value);
   Value pull();
 
+  void free_buffer();
+
 protected:
-  DMem<uint8_t> instructions; // Bytecode instruction that VM executes 
-  DMem<int> lines;            // Buffer for Line infromation
-  DMem<Value> constant_pool;  // Buffer to store constants 
+  InstructionBuffer buffer;
 
   Value stack[Constants::stack_max]; // This is a stack based VM
   Value* stack_top;

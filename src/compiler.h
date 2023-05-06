@@ -3,6 +3,7 @@
 
 #include "scanner.h"
 #include "memory.h"
+#include "buffers.h"
 
 namespace Oevyli {
 
@@ -12,7 +13,7 @@ public:
   ~Compiler() {}
   
   // Compiler fill the instructions buffer with relevent instructions
-  bool compile(DMem<uint8_t>& instructions);
+  bool compile(InstructionBuffer* buffer);
 
 private:
   void advance();
@@ -28,6 +29,8 @@ private:
 private:
   Token previous, current;
   Scanner scanner;
+
+  InstructionBuffer* buffer;
 
   bool had_error; // If error occured during compilation
   bool panic;     // To avoid eror cascades

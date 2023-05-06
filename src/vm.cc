@@ -17,7 +17,7 @@ Value VM::pull() {
 }
 
 Value VM::read_constant() {
-  return constant_pool.item(read_byte());
+  return buffer.constant_pool.item(read_byte());
 }
 
 uint8_t VM::read_byte() {
@@ -54,53 +54,57 @@ InterpretResult VM::run() {
 #undef BINARY_OP
 }
 
+void VM::free_buffer() {
+  buffer.instructions.free();
+  buffer.constant_pool.free();
+  buffer.lines.free();
+}
+
 InterpretResult VM::interpret(const char* source) {
   // For testing OpCodes ---------------------------
-  int constant = constant_pool.write_and_get_index(1.2);
-  instructions.write(OP_CONSTANT);
-  instructions.write(constant);
-  lines.write(123);
+  int constant = buffer.constant_pool.write_and_get_index(1.2);
+  buffer.instructions.write(OP_CONSTANT);
+  buffer.instructions.write(constant);
+  buffer.lines.write(123);
 
-  constant = constant_pool.write_and_get_index(3.4);
-  instructions.write(OP_CONSTANT);
-  instructions.write(constant);
-  lines.write(123);
+  constant = buffer.constant_pool.write_and_get_index(3.4);
+  buffer.instructions.write(OP_CONSTANT);
+  buffer.instructions.write(constant);
+  buffer.lines.write(123);
 
-  instructions.write(OP_ADD);
-  lines.write(123);
+  buffer.instructions.write(OP_ADD);
+  buffer.lines.write(123);
   
-  constant = constant_pool.write_and_get_index(5.6);
-  instructions.write(OP_CONSTANT);
-  instructions.write(constant);
-  lines.write(123);
+  constant = buffer.constant_pool.write_and_get_index(5.6);
+  buffer.instructions.write(OP_CONSTANT);
+  buffer.instructions.write(constant);
+  buffer.lines.write(123);
 
-  instructions.write(OP_DIVIDE);
-  lines.write(123);
-  instructions.write(OP_NEGATE);
-  lines.write(123);
+  buffer.instructions.write(OP_DIVIDE);
+  buffer.lines.write(123);
+  buffer.instructions.write(OP_NEGATE);
+  buffer.lines.write(123);
 
-  instructions.write(OP_RETURN);
-  lines.write(123);
+  buffer.instructions.write(OP_RETURN);
+  buffer.lines.write(123);
 
   // TODO (Lilanka): Add support for OP_CONSTANT_LONG
 
-  //debug_instructions(instructions, constant_pool, lines);
+  debug_instructions(&buffer);
   // ------------------------------------------------
 
   Compiler compiler(source);
 
-  if (!(compiler.compile(instructions))) {
-    instructions.free();
+  if (!(compiler.compile(&buffer))) {
+    buffer.instructions.free();
     return InterpretResult::COMPILE_ERROR;
   }
 
-  ip = instructions.values;
+  ip = buffer.instructions.values;
   debug_printf("%s\n", "passed");
   InterpretResult result = run();
 
-  instructions.free();
-  lines.free();
-  constant_pool.free();
+  free_buffer();
   return result;
 }
 

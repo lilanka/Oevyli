@@ -3,6 +3,7 @@
 
 #include "memory.h"
 #include "value.h"
+#include "buffers.h"
 
 namespace Oevyli {
 
@@ -27,22 +28,23 @@ static void debug_print_string(const char* message) {
 }
 
 // To debug VM instructions
-static void debug_instructions(DMem<uint8_t>& instructions, DMem<Value>& constant_pool, DMem<int>& lines) {
+static void debug_instructions(InstructionBuffer* buffer) {
   debug_printf("%s\n", "--- Debug Instructions ---");
   debug_printf("%s\n", "| Opcode | Constant Value | Constant Pool Index | Line Number |");
 	int pool_idx = 0;
 	int n_instructions = 0;
-  for (unsigned int i = 0; i < instructions.size(); ++i) {
-    switch (instructions.item(i)) {
+  for (unsigned int i = 0; i < buffer->instructions.size(); ++i) {
+    switch (buffer->instructions.item(i)) {
       case OP_CONSTANT: 
-				debug_printf("| %s | %f | %i | %i |\n", "OP_CONSTANT", constant_pool.item(pool_idx), instructions.item(i+1), lines.item(n_instructions)); 
+				debug_printf("| %s | %f | %i | %i |\n", "OP_CONSTANT", buffer->constant_pool.item(pool_idx), buffer->instructions.item(i+1), buffer->lines.item(n_instructions)); 
 				i++; pool_idx++;
 				break;
       case OP_CONSTANT_LONG: 
-				debug_printf("| %s | %f | %i | %i |\n", "OP_CONSTANT_LONG", constant_pool.item(pool_idx), instructions.item(i+1), lines.item(n_instructions)); 
-				i++; pool_idx++;
+				debug_printf("| %s | %f | %i | %i |\n", "OP_CONSTANT_LONG", buffer->constant_pool.item(pool_idx), buffer->instructions.item(i+1), buffer->lines.item(n_instructions)); 
+				i++; 
+        pool_idx++;
 				break;
-      case OP_RETURN: debug_printf("| %s | %s | %s | %i |\n", "OP_RETURN", "nan", "nan", lines.item(n_instructions)); break;
+      case OP_RETURN: debug_printf("| %s | %s | %s | %i |\n", "OP_RETURN", "nan", "nan", buffer->lines.item(n_instructions)); break;
       default: debug_printf("%s\n", "Unidentefied instruction"); break;
     }
 		n_instructions++;
